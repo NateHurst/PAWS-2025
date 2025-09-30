@@ -46,13 +46,13 @@ Can you find the plain text message?
 
 (c) For this problem we employ SageMath. We can brute force this, but reduce the computations by only checking certain keys in which a double letter (i.e. tt) is encrypted as EE (there are only 9 such letters). Using this we find the private key $k = (a,b) = (19, 7)$ and the plaintext is LETSCHANGEOABETTERENCRYPTIONSCHEME
 #figure(
-  image("sage1.png", width: 100%),
+  image("images/affine_ciph.png", width: 100%),
   caption: [
-    Code
+  "Code"
   ],
 )
 #figure(
-  image("sage2.png", width: 100%),
+  image("images/affine_ciph_sol.png", width: 100%),
   caption: [
     Results
   ],
@@ -251,8 +251,8 @@ Alice encrypts $m$ as $c equiv m + alpha space (mod 10^d)$. Bob decrypts $c$ by 
 
 (a) First we compute $alpha$ as the first $6$ digits of the decimal expansion of $sqrt(11) = 3.31662479036...$ giving us $alpha=316624$. Then we encrypt $c equiv m + alpha equiv 328973+316624 equiv 645597 space (mod 10^6)$.
 #line(length: 15%)
-(b)
+(b) First we compute $alpha$ as the first $8$ digits of the decimal expansion of $sqrt(23) = 4.79583152331...$ giving us $alpha = 79583152$. Then to decrypt we do $m equiv c - alpha equiv 78183903 - 79583152 equiv 98600751 space (mod 10^8)$.
 #line(length: 15%)
-(c)
+(c) Observe that $⌊sqrt(k)⌋$ gives the decimal expansion of $sqrt(k)$ including only digits to the left of the decimal point. Then $sqrt(k)- ⌊sqrt(k)⌋$ gives $0.D_1D_2 dots$, where $D_1 D_2 dots$ is the decimal expansion of $sqrt(k)$ only including digits to the right of the decimal point. Then $10^d (sqrt(k) - ⌊sqrt(k)⌋ )$ gives us $D_1 D_2 dots D_d. D_(d+1) dots$ (i.e. the previous number shifted $D$ places to the left. Finally adding the floor function cuts off all digits to the right of the decimal point. Thus we are left with exactly the first $d$ decimal places of the decimal expansion of $sqrt(k)$, which is $alpha$.
 #line(length: 15%)
-(d)
+(d) 
