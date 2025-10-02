@@ -83,16 +83,16 @@ Alice and Bob want to create a shared Diffie-Hellman key. They use setups with v
 
 (b) $q = 18446744073709552109 approx 2^(64), A = 17485644247020728566, B = 17485644247020728566.$
 
-(c) $q = 340282366920938463463374607431768218963 approx 2^(128), A = 15855669586157245378211095347605706305, B = 64379118553030588558740134964520672205.$
+(c) $q = 340282366920938463463374607431768219863 approx 2^(128), A = 15855669586157245378211095347605706305, B = 643791185530305885858740134964520672205.$
 
 In SageMath, you can use the *log* function to compute discrete logarithms, i.e., $a = A.log(g)$ (provided that $g, A$ are defined as elements over $FF_p$). Further, you can use *\%time* to time your results. How does the runtime evolve for increasing values of $q$?
 ]
 
-(a) First we compute $p = 2q + 1= 8589935363$. Then we compute $a = "discrete_log(Mod"(A,p)",Mod"(4,p))equiv 121029226 space (mod p)$. Then we can compute the shared key $B^a equiv 3122549640 space (mod p) $. The runtime for the discrete logarithm to compute $a$ was 34.2 ms.
+(a) First we compute $p = 2q + 1= 8589935363$. Then we compute $a = A.log(g) = 121029226$. Then we can compute the shared key $B^a equiv 3122549640 space (mod p) $. The runtime for the discrete logarithm to compute $a$ was 7.1 ms.
 #line(length: 15%)
-(b) First we compute $p = 2q+1 = 36893488147419104219$. Then we compute $a = "discrete_log(Mod"(A,p)",Mod"(4,p))equiv  e e e e  space (mod p)$. Then we can compute the shared key $B^a equiv e e e e  space (mod p) $. The runtime for the discrete logarithm to compute $a$ was eeeeeeeeeee.
+(b) First we compute $p = 2q+1 = 36893488147419104219$. Then we compute $a = A.log(g) = 17913846143021880100$. Then we can compute the shared key $B^a equiv 10647114428957721787  space (mod p) $. The runtime for the discrete logarithm to compute $a$ was $190$ ms.
 #line(length: 15%)
-(c)
+(c) First we compute $p = 2q+1 = 680564733841876926926749214863536439727$. Then we compute $a = A.log(g) = 63361436478061474206645201191086014926$. Then we can compute the shared key $B^a equiv 214488715430712623062490308139976786604  space (mod p) $. The runtime for the discrete logarithm to compute $a$ was $54$ seconds. As seen from the evolution of the time to compute the DLP, it is clear that the DLP can get very hard when numbers get large (with current methods).
 
 #numbered_problem(6)[
 We now try to set up the ElGamal public key encryption scheme. We will start by doing that in the group $G = FF_(29)^*$.
@@ -128,13 +128,22 @@ Try now to implement the ElGamal public key encryption scheme in SageMath using 
 (iii) *Dec*, taking as input a prime $p$, a generator $g$, the secret key $s k$ and an encryption $(c_1, c_2)$, returning a message $m$.
 
 For the prime field and the generator use the parameter set *ffdhe3072*, in which
-#align(center, $p = 2^(3072) - 2^(3008) + ( [2^(2942) dot e] + 2625351 ) dot 2^(64) - 1$)
+#align(center, $p = 2^(3072) - 2^(3008) + ( ⌊2^(2942) dot e⌋ + 2625351 ) dot 2^(64) - 1$)
 and $g=2$. You can find more information and the hexadecimal representation for the prime in the Appendix A and A.2 of the IETF standard Negotiated Finite Field Diffie-Hellman Ephemeral Parameters for Transport Layer Security (TLS). Try to time your implementations of *KeyGen*, *Enc* and *Dec*.
 
 Some useful functions you can use in SageMath are the time library (load it with *import time*, then use *time.time()* to get the Unix time) the function *pow* (try to run *pow?* to see how to use it) or the constructor *GF(p)* to create the finite field $FF_p$.
 ]
+You can also find this code in the Scripts folder on my github repo, in the file titled elgamal.ipynb
 
-a
+#figure(
+  image("images/elgamal_1.png", width: 79%),
+)
+#figure(
+  image("images/elgamal_2.png", width: 79%),
+  caption: [
+    Note that in this screenshot I leave out initializing the prime as it is a long hex string.
+  ],
+)
 
 #numbered_problem(8)[
 Consider the following setup:
@@ -234,7 +243,7 @@ To avoid the attack described above in implementations we use *safe primes*, i.e
 
 #numbered_problem(12)[
 Alice and Bob create a symmetric cipher in the following way: Their private key $k$ is a large integer and their messages are $d$-digit integers, so
-#align(center, $cal(M) = m in ZZ : 0 <= m < 10^d)$)
+#align(center, $cal(M) ={ m in ZZ : 0 <= m < 10^d}$)
 To encrypt a message, Alice computes $sqrt(k)$ to $d$ decimal places and lets $alpha$ be the $d$-digit number to the right of the decimal place. (For example, if $k=87$ and $d=6$ then $sqrt(87) = 9.32737905 dots$ and $alpha = 327379$.)
 
 Alice encrypts $m$ as $c equiv m + alpha space (mod 10^d)$. Bob decrypts $c$ by computing $m equiv c - alpha space (mod 10^d)$.
@@ -255,4 +264,10 @@ Alice encrypts $m$ as $c equiv m + alpha space (mod 10^d)$. Bob decrypts $c$ by 
 #line(length: 15%)
 (c) Observe that $⌊sqrt(k)⌋$ gives the decimal expansion of $sqrt(k)$ including only digits to the left of the decimal point. Then $sqrt(k)- ⌊sqrt(k)⌋$ gives $0.D_1D_2 dots$, where $D_1 D_2 dots$ is the decimal expansion of $sqrt(k)$ only including digits to the right of the decimal point. Then $10^d (sqrt(k) - ⌊sqrt(k)⌋ )$ gives us $D_1 D_2 dots D_d. D_(d+1) dots$ (i.e. the previous number shifted $D$ places to the left. Finally adding the floor function cuts off all digits to the right of the decimal point. Thus we are left with exactly the first $d$ decimal places of the decimal expansion of $sqrt(k)$, which is $alpha$.
 #line(length: 15%)
-(d) 
+(d) Since we have the stipulation that $10^d$ is large compared to $k$, we can brute force $k$ given $alpha$ with relative ease. More specifically we assume that $k << 10^d$ in order to say that $sqrt(k)$'s decimal expansion is unique when considered against the other numbers up to $k$ (so we will always find the right number - this tends to be true in practice, I tried a lot of numbers!). We employ the following algorithm (on the next page):
+#figure(
+  image("images/sqrt_brute_force.png", width: 79%),
+  caption: [
+    This code can be found in the scripts folder on my github repo in the file named decimalexp.py. Try it out by square-rooting your favorite number and inputing the first d digit of its decimal expansion as alpha!
+  ],
+)
