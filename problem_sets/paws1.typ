@@ -72,7 +72,7 @@ CLAVQOKG OONDTJIV QOJIVLEA EIBHTBLO YBLEQPIG AA"$)
 from a conversation between Alice and Bob. You know that they used a substitution cipher. Can you recover the plain text $m$? Note that the spacing is only used for readability and does not coincide with the spacing of the original text.
 ]
 
-For this problem we employ frequency analysis in order to make educated guesses at the plain text $m$. Since $O$ is the most common ciphertext letter we correspond this to the most common english letter $E$, and since thew bigram $Q O$ is the most common bigram in the ciphertext we correspond this to the most common english bigram (satisfying $E -> 0$) $H E$. From here we can fill in the rest of the letters with educated guesses to recover the plaintext
+For this problem we employ frequency analysis in order to make educated guesses at the plain text $m$. Since $O$ is the most common ciphertext letter we correspond this to the most common english letter $E$, and since thew bigram $Q O$ is the most common bigram in the ciphertext we correspond this to the most common english bigram (satisfying $E <-> O$) $H E$. From here we can fill in the rest of the letters with educated guesses to recover the plaintext
 #align(center, $"MATHEMATICS IS THE QUEEN OF THE SCIENCES AND 
 NUMBER THEORY IS THE QUEEN OF MATHEMATICS CARL FRIEDRICH GAUSS"$)
 

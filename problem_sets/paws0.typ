@@ -150,7 +150,7 @@ This group is not commutative, and here is a counterexample:
 #line(length: 15%)
 (e) $ZZ slash 15 ZZ-{0}$ is not a group under multiplication, for $[3]$ is not invertible as $(3)(5) equiv 0 space (mod 15)$, and $(0)n equiv 0 space (mod 15)$ for all $n$. The maximal subset of $ZZ slash 15 ZZ-{0}$ which is a group under multiplication is the group of units $(ZZ slash 15 ZZ)^*$, as if $a,b in (ZZ slash 15 ZZ)^*$ then $(a b)b^(-1)a^(-1) equiv 1 space (mod 15)$ and so $a b in (ZZ slash 15 ZZ)^*$. Any larger subset contains elements which are not invertible, and hence that larger subset cannot be a group.
 #line(length: 15%)
-(f) First let $z$ be a power of a prime. Then $z=p^n$ for some $n$. Then the amount of numbers which can be coprime to $p^n$ and less than $p^n$ are exactly $p^n-$ numbers who are a multiple of $p$, and there are exactly $p^{n-1}$ such numbers ${p,2p,dots,p^2,2p^2,dots,(p-1)p^(n-1)}$, thus the amount of numbers less than and coprime to $p^n$ is exactly $p^n-p^(n-1)=p^n(1-frac(1,p))$.
+(f) First let $z$ be a power of a prime. Then $z=p^n$ for some $n$. Then the amount of numbers which can be coprime to $p^n$ and less than $p^n$ are exactly $p^n-$ numbers who are a multiple of $p$, and there are exactly $p^(n-1)$ such numbers ${p,2p,dots,p^2,2p^2,dots,(p-1)p^(n-1)}$, thus the amount of numbers less than and coprime to $p^n$ is exactly $p^n-p^(n-1)=p^n(1-frac(1,p))$.
     
 Now observe that when $m$ and $n$ are coprime we have that they share no prime factors, and so 
 
