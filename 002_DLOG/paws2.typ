@@ -1,5 +1,5 @@
 // Example usage of the homework template
-#import "homework-template.typ": *
+#import "template.typ": *
 
 // Page setup (MUST be at document level, not in function)
 #set page(

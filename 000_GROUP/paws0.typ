@@ -1,5 +1,5 @@
 // Example usage of the homework template
-#import "homework-template.typ": *
+#import "template.typ": *
 #import "@preview/algo:0.3.6": algo, i, d, comment, code
 
 // Page setup (MUST be at document level, not in function)
