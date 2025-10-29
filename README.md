@@ -17,7 +17,11 @@ Problem sets and my solutions to exersizes from PAWS 2025. Course content includ
 - Baby-step Giant-step Implementaion
 - Pollard's Rho Implementation
 - Pollard's Rho for Integer Factorization Implementation
-- Index Calculus
+- Index Calculus Implementation
+
+### Elliptic Curve Cryptography
+
+- Tonelli-Shanks
 
 ### TBD
 
@@ -25,5 +29,5 @@ Problem sets and my solutions to exersizes from PAWS 2025. Course content includ
 
 Most implementations use SageMath functions, and so a SageMath kernel is required to run the code. You can find intstructions on how to install SageMath on the SageMath installation guide: https://doc-gitlab.sagemath.org/html/en/installation/index.html
 
-Once you have SageMath you can either choose to configure my Jupytr notebook file to run the SageMath kernel or you can directly copy and paste my code into the SageMath terminal, changing inputs as needed.
+Once you have SageMath you can either choose to configure my Jupytr notebook file to run the SageMath kernel or you can directly copy and paste my code into the SageMath terminal/.sage file, changing inputs as needed.
 
